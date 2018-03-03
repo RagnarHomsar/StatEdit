@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace StatEdit
 {
-    public partial class Form1 : Form
+    public partial class StatEditForm : Form
     {
-        public Form1()
+        public StatEditForm()
         {
             InitializeComponent();
         }
