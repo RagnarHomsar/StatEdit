@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using org.mariuszgromada.math.mxparser;
 
 namespace StatEdit
 {
@@ -122,6 +124,15 @@ namespace StatEdit
                 chartArea.AxisY.Interval = 10;
             }
 
+            // TP
+            else if (statId == 1)
+            {
+                chartArea.AxisY.Minimum = 0;
+                chartArea.AxisY.Maximum = 500;
+                chartArea.AxisY.Interval = 100;
+            }
+
+            // HP
             else
             {
                 chartArea.AxisY.Minimum = 0;
@@ -147,7 +158,7 @@ namespace StatEdit
                     Color = ClassLineColors[classId],
                     Name = Classes[classId],
                     IsXValueIndexed = true,
-                    ChartType = SeriesChartType.Line
+                    ChartType = SeriesChartType.Line,
                 };
 
                 for (int i = 1; i < StatTable.LEVELS_PER_CLASS; i++)
@@ -156,6 +167,9 @@ namespace StatEdit
 
                     classSeries.Points.AddXY(i, statAtLevel);
                 }
+
+                // bad magic number
+                classSeries.Points[98].Label = classSeries.Name;
 
                 classSeries.Legend = functionStatSelector.Items[statId].ToString();
                 classSeries.IsVisibleInLegend = true;
@@ -218,6 +232,29 @@ namespace StatEdit
             // if firstChecked is not null, at least one box is selected
             // otherwise, no boxes are selected
             return (firstChecked != null);
+        }
+
+        private void applyFunctionButton_Click(object sender, EventArgs e)
+        {
+            var startLevel = (int) startLevelInput.Value;
+            var endLevel = (int) endLevelInput.Value;
+
+            var inputFunction = new Function("stat(lv) = " + functionTextBox.Text.Replace("\n", ""));
+            var expression = new Expression("stat(" + startLevel.ToString() + ")", inputFunction);
+
+            var range = endLevel - (startLevel - 1);
+            var results = new List<int>();
+
+            for (var i = 0; i < range; i++)
+            {
+                expression.setExpressionString("stat(" + (startLevel + i).ToString() + ")");
+                var result = (int)expression.calculate();
+
+                // TODO: don't do this with HP and TP
+                if (result > 99) { result = 99; }
+
+                results.Add(result);
+            }
         }
     }
 }

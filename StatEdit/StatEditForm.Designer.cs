@@ -57,11 +57,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.functionEditorBox = new System.Windows.Forms.GroupBox();
             this.applyFunctionButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.functionTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.endLevelInput = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.startLevelInput = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.functionStatSelector = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -88,6 +88,7 @@
             this.strGraphSelect = new System.Windows.Forms.RadioButton();
             this.vitGraphSelect = new System.Windows.Forms.RadioButton();
             this.tecGraphSelect = new System.Windows.Forms.RadioButton();
+            this.label14 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.levelEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hpEntry)).BeginInit();
@@ -99,8 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lucEntry)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.functionEditorBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.endLevelInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startLevelInput)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.chartClassBox.SuspendLayout();
             this.chartStatBox.SuspendLayout();
@@ -419,12 +420,13 @@
             // 
             // functionEditorBox
             // 
+            this.functionEditorBox.Controls.Add(this.label14);
             this.functionEditorBox.Controls.Add(this.applyFunctionButton);
-            this.functionEditorBox.Controls.Add(this.textBox1);
+            this.functionEditorBox.Controls.Add(this.functionTextBox);
             this.functionEditorBox.Controls.Add(this.label13);
-            this.functionEditorBox.Controls.Add(this.numericUpDown2);
+            this.functionEditorBox.Controls.Add(this.endLevelInput);
             this.functionEditorBox.Controls.Add(this.label12);
-            this.functionEditorBox.Controls.Add(this.numericUpDown1);
+            this.functionEditorBox.Controls.Add(this.startLevelInput);
             this.functionEditorBox.Controls.Add(this.label11);
             this.functionEditorBox.Controls.Add(this.functionStatSelector);
             this.functionEditorBox.Controls.Add(this.label10);
@@ -443,14 +445,15 @@
             this.applyFunctionButton.TabIndex = 6;
             this.applyFunctionButton.Text = "Apply";
             this.applyFunctionButton.UseVisualStyleBackColor = true;
+            this.applyFunctionButton.Click += new System.EventHandler(this.applyFunctionButton_Click);
             // 
-            // textBox1
+            // functionTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 114);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 79);
-            this.textBox1.TabIndex = 5;
+            this.functionTextBox.Location = new System.Drawing.Point(9, 130);
+            this.functionTextBox.Multiline = true;
+            this.functionTextBox.Name = "functionTextBox";
+            this.functionTextBox.Size = new System.Drawing.Size(244, 63);
+            this.functionTextBox.TabIndex = 5;
             // 
             // label13
             // 
@@ -461,23 +464,23 @@
             this.label13.TabIndex = 4;
             this.label13.Text = "Using the following formula:";
             // 
-            // numericUpDown2
+            // endLevelInput
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(72, 72);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.endLevelInput.Location = new System.Drawing.Point(72, 72);
+            this.endLevelInput.Maximum = new decimal(new int[] {
             99,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.endLevelInput.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(181, 20);
-            this.numericUpDown2.TabIndex = 3;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.endLevelInput.Name = "endLevelInput";
+            this.endLevelInput.Size = new System.Drawing.Size(181, 20);
+            this.endLevelInput.TabIndex = 3;
+            this.endLevelInput.Value = new decimal(new int[] {
             99,
             0,
             0,
@@ -492,18 +495,18 @@
             this.label12.TabIndex = 2;
             this.label12.Text = "To level:";
             // 
-            // numericUpDown1
+            // startLevelInput
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(72, 46);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.startLevelInput.Location = new System.Drawing.Point(72, 46);
+            this.startLevelInput.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(181, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.startLevelInput.Name = "startLevelInput";
+            this.startLevelInput.Size = new System.Drawing.Size(181, 20);
+            this.startLevelInput.TabIndex = 3;
+            this.startLevelInput.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -794,6 +797,15 @@
             this.tecGraphSelect.Text = "TEC";
             this.tecGraphSelect.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 114);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(137, 13);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "(Use \"lv\" to represent level)";
+            // 
             // StatEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -823,8 +835,8 @@
             this.groupBox1.PerformLayout();
             this.functionEditorBox.ResumeLayout(false);
             this.functionEditorBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.endLevelInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startLevelInput)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.chartClassBox.ResumeLayout(false);
             this.chartClassBox.PerformLayout();
@@ -868,11 +880,11 @@
         private System.Windows.Forms.ComboBox functionStatSelector;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button applyFunctionButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox functionTextBox;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown endLevelInput;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown startLevelInput;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton strGraphSelect;
         private System.Windows.Forms.RadioButton tpGraphSelect;
@@ -896,6 +908,7 @@
         private System.Windows.Forms.RadioButton vitGraphSelect;
         private System.Windows.Forms.RadioButton tecGraphSelect;
         private System.Windows.Forms.Button chartApply;
+        private System.Windows.Forms.Label label14;
     }
 }
 
