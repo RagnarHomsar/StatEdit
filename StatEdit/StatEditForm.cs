@@ -163,7 +163,7 @@ namespace StatEdit
 
                 for (int i = 1; i < StatTable.LEVELS_PER_CLASS; i++)
                 {
-                    var statAtLevel = st.Entries[classId, i].ToByteArray()[statId];
+                    var statAtLevel = st.Entries[classId, i].GetStatArray()[statId];
 
                     classSeries.Points.AddXY(i, statAtLevel);
                 }
@@ -218,6 +218,11 @@ namespace StatEdit
             if (openTableDialog.ShowDialog() == DialogResult.OK)
             {
                 st = new StatTable(openTableDialog.FileName);
+
+                foreach (Control control in Controls)
+                {
+                    if (control.Enabled == false)  { control.Enabled = true; }
+                }
             }
 
             UpdateStats(null, null);
@@ -236,6 +241,9 @@ namespace StatEdit
 
         private void applyFunctionButton_Click(object sender, EventArgs e)
         {
+            var classId = classList.SelectedIndex;
+            var statId = functionStatSelector.SelectedIndex;
+
             var startLevel = (int) startLevelInput.Value;
             var endLevel = (int) endLevelInput.Value;
 
@@ -248,12 +256,46 @@ namespace StatEdit
             for (var i = 0; i < range; i++)
             {
                 expression.setExpressionString("stat(" + (startLevel + i).ToString() + ")");
-                var result = (int)expression.calculate();
+                var result = (int) expression.calculate();
+                
+                if (result > 99 && statId > 2) { result = 99; }
+                else if (result > 4000 && statId <= 2) { result = 4000; } // i'm pretty sure car said HP caps at 4000 in EO3R
 
-                // TODO: don't do this with HP and TP
-                if (result > 99) { result = 99; }
+                // i'm too tired to do something better right now
+                if (statId == 0) { st.Entries[classId, startLevel + i].hp = (uint) result; }
+                else if (statId == 1) { st.Entries[classId, startLevel + i].tp = (uint) result; }
+                else if (statId == 2) { st.Entries[classId, startLevel + i].str = (byte) result; }
+                else if (statId == 3) { st.Entries[classId, startLevel + i].tec = (byte) result; }
+                else if (statId == 4) { st.Entries[classId, startLevel + i].vit = (byte) result; }
+                else if (statId == 5) { st.Entries[classId, startLevel + i].agi = (byte) result; }
+                else if (statId == 6) { st.Entries[classId, startLevel + i].luc = (byte) result; }
+            }
 
-                results.Add(result);
+            UpdateStats(null, null);
+        }
+
+        private void applySingleLevelButton_Click(object sender, EventArgs e)
+        {
+            var classId = classList.SelectedIndex;
+            var level = (int) levelEntry.Value;
+
+            st.Entries[classId, level].hp = (uint) hpEntry.Value;
+            st.Entries[classId, level].tp = (uint) tpEntry.Value;
+            st.Entries[classId, level].str = (byte) strEntry.Value;
+            st.Entries[classId, level].tec = (byte) tecEntry.Value;
+            st.Entries[classId, level].vit = (byte) vitEntry.Value;
+            st.Entries[classId, level].agi = (byte) agiEntry.Value;
+            st.Entries[classId, level].luc = (byte) lucEntry.Value;
+        }
+
+        private void saveStatTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var saveTableDialog = new SaveFileDialog();
+            saveTableDialog.DefaultExt = ".tbl";
+
+            if (saveTableDialog.ShowDialog() == DialogResult.OK)
+            {
+                st.WriteToFile(saveTableDialog.FileName);
             }
         }
     }

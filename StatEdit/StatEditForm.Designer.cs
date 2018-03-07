@@ -56,6 +56,7 @@
             this.applySingleLevelButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.functionEditorBox = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.applyFunctionButton = new System.Windows.Forms.Button();
             this.functionTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -88,7 +89,6 @@
             this.strGraphSelect = new System.Windows.Forms.RadioButton();
             this.vitGraphSelect = new System.Windows.Forms.RadioButton();
             this.tecGraphSelect = new System.Windows.Forms.RadioButton();
-            this.label14 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.levelEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hpEntry)).BeginInit();
@@ -140,6 +140,7 @@
             this.saveStatTableToolStripMenuItem.Name = "saveStatTableToolStripMenuItem";
             this.saveStatTableToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.saveStatTableToolStripMenuItem.Text = "Save stat table...";
+            this.saveStatTableToolStripMenuItem.Click += new System.EventHandler(this.saveStatTableToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -158,6 +159,7 @@
             // classList
             // 
             this.classList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.classList.Enabled = false;
             this.classList.FormattingEnabled = true;
             this.classList.Location = new System.Drawing.Point(50, 27);
             this.classList.Name = "classList";
@@ -167,6 +169,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(10, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
@@ -391,6 +394,7 @@
             this.applySingleLevelButton.TabIndex = 7;
             this.applySingleLevelButton.Text = "Apply";
             this.applySingleLevelButton.UseVisualStyleBackColor = true;
+            this.applySingleLevelButton.Click += new System.EventHandler(this.applySingleLevelButton_Click);
             // 
             // groupBox1
             // 
@@ -411,6 +415,7 @@
             this.groupBox1.Controls.Add(this.agiEntry);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lucEntry);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(13, 54);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(259, 256);
@@ -430,12 +435,22 @@
             this.functionEditorBox.Controls.Add(this.label11);
             this.functionEditorBox.Controls.Add(this.functionStatSelector);
             this.functionEditorBox.Controls.Add(this.label10);
+            this.functionEditorBox.Enabled = false;
             this.functionEditorBox.Location = new System.Drawing.Point(13, 317);
             this.functionEditorBox.Name = "functionEditorBox";
             this.functionEditorBox.Size = new System.Drawing.Size(259, 232);
             this.functionEditorBox.TabIndex = 9;
             this.functionEditorBox.TabStop = false;
             this.functionEditorBox.Text = "Function-Based Editing";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 114);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(137, 13);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "(Use \"lv\" to represent level)";
             // 
             // applyFunctionButton
             // 
@@ -544,6 +559,7 @@
             this.groupBox3.Controls.Add(this.chartApply);
             this.groupBox3.Controls.Add(this.chartClassBox);
             this.groupBox3.Controls.Add(this.chartStatBox);
+            this.groupBox3.Enabled = false;
             this.groupBox3.Location = new System.Drawing.Point(13, 556);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(259, 259);
@@ -796,15 +812,6 @@
             this.tecGraphSelect.Tag = "3";
             this.tecGraphSelect.Text = "TEC";
             this.tecGraphSelect.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 114);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(137, 13);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "(Use \"lv\" to represent level)";
             // 
             // StatEditForm
             // 

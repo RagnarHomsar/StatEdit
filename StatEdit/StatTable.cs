@@ -32,6 +32,16 @@ namespace StatEdit
                 }
             }
         }
+
+        public void WriteToFile(string fileName)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                foreach (var entry in Entries) { writer.Write(entry.ToByteArray()); }
+                File.WriteAllBytes(fileName, stream.ToArray());
+            }
+        }
     }
 
     class StatLevel
@@ -40,16 +50,14 @@ namespace StatEdit
         public uint hp { get; set; }
         public uint tp { get; set; }
 
-        // technically stats are shorts but in practice 
-        // they'll never go above byte values
-        public byte str { get; set; }
-        public byte vit { get; set; }
-        public byte agi { get; set; }
-        public byte luc { get; set; }
-        public byte tec { get; set; }
+        public short str { get; set; }
+        public short vit { get; set; }
+        public short agi { get; set; }
+        public short luc { get; set; }
+        public short tec { get; set; }
 
         // might as well!
-        byte wis;
+        short wis;
 
         public StatLevel(byte[] data)
         {
@@ -63,19 +71,37 @@ namespace StatEdit
             wis = data[0x12];
         }
 
-        public uint[] ToByteArray()
+        public uint[] GetStatArray()
         {
             var toReturn = new List<uint>();
 
             toReturn.Add(hp);
             toReturn.Add(tp);
-            toReturn.Add(str);
-            toReturn.Add(tec);
-            toReturn.Add(vit);
-            toReturn.Add(agi);
-            toReturn.Add(luc);
+            toReturn.Add((uint) str);
+            toReturn.Add((uint) tec);
+            toReturn.Add((uint) vit);
+            toReturn.Add((uint) agi);
+            toReturn.Add((uint) luc);
 
             return toReturn.ToArray();
+        }
+
+        public byte[] ToByteArray()
+        {
+            using (MemoryStream stream = new MemoryStream())
+            using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                writer.Write(hp);
+                writer.Write(tp);
+                writer.Write(str);
+                writer.Write(vit);
+                writer.Write(agi);
+                writer.Write(luc);
+                writer.Write(tec);
+                writer.Write(wis);
+
+                return stream.ToArray();
+            }
         }
     }
 }
