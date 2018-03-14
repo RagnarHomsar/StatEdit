@@ -42,7 +42,8 @@ namespace StatEdit
                 "TEC",
                 "VIT",
                 "AGI",
-                "LUC"
+                "LUC",
+                "Stat Average"
             };
 
             ClassLineColors = new System.Drawing.Color[]
@@ -69,6 +70,9 @@ namespace StatEdit
 
             classList.SelectedIndexChanged += UpdateStats;
             levelEntry.ValueChanged += UpdateStats;
+
+            KeyPreview = true;
+            KeyDown += MainFormKeyboardShortcutsHandler;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,7 +148,7 @@ namespace StatEdit
 
             chartObject.ChartAreas.Add(chartArea);
 
-            chartForm.Text = "StatEdit Chart: " + functionStatSelector.Items[statId];
+            chartForm.Text = "StatEdit Chart: " + Stats[statId];
 
             var legend = new Legend(functionStatSelector.Items[statId].ToString());
 
@@ -163,9 +167,25 @@ namespace StatEdit
 
                 for (int i = 1; i < StatTable.LEVELS_PER_CLASS; i++)
                 {
-                    var statAtLevel = st.Entries[classId, i].GetStatArray()[statId];
 
-                    classSeries.Points.AddXY(i, statAtLevel);
+                    if (avgGraphSelect.Checked)
+                    {
+                        uint avgStatAtLevel = 0;
+
+                        for (int j = 2; j < 7; j++)
+                        {
+                            avgStatAtLevel += st.Entries[classId, i].GetStatArray()[j];
+                        }
+
+                        avgStatAtLevel /= 5;
+                        classSeries.Points.AddXY(i, avgStatAtLevel);
+                    }
+
+                    else
+                    {
+                        var statAtLevel = st.Entries[classId, i].GetStatArray()[statId];
+                        classSeries.Points.AddXY(i, statAtLevel);
+                    }
                 }
 
                 // bad magic number
@@ -181,6 +201,9 @@ namespace StatEdit
 
             chartForm.Controls.Add(chartObject);
             chartObject.Location = new System.Drawing.Point(0, 0);
+
+            chartForm.KeyPreview = true;
+            chartForm.KeyDown += ChartCloseKeyShortcut;
 
             chartForm.Show();
         }
@@ -222,6 +245,11 @@ namespace StatEdit
                 foreach (Control control in Controls)
                 {
                     if (control.Enabled == false)  { control.Enabled = true; }
+                }
+
+                foreach (CheckBox checkBox in chartClassBox.Controls)
+                {
+                    checkBox.Checked = true;
                 }
             }
 
@@ -296,6 +324,25 @@ namespace StatEdit
             if (saveTableDialog.ShowDialog() == DialogResult.OK)
             {
                 st.WriteToFile(saveTableDialog.FileName);
+            }
+        }
+
+        private void MainFormKeyboardShortcutsHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.R)
+            {
+                e.Handled = true;
+                graphApply_Click(null, null);
+            }
+        }
+
+        private void ChartCloseKeyShortcut(object sender, KeyEventArgs e)
+        {
+            var senderAsForm = (Form) sender;
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                senderAsForm.Close();
             }
         }
     }

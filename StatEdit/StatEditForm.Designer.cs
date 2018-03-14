@@ -89,6 +89,7 @@
             this.strGraphSelect = new System.Windows.Forms.RadioButton();
             this.vitGraphSelect = new System.Windows.Forms.RadioButton();
             this.tecGraphSelect = new System.Windows.Forms.RadioButton();
+            this.avgGraphSelect = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.levelEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hpEntry)).BeginInit();
@@ -569,9 +570,9 @@
             // 
             // chartApply
             // 
-            this.chartApply.Location = new System.Drawing.Point(7, 216);
+            this.chartApply.Location = new System.Drawing.Point(7, 231);
             this.chartApply.Name = "chartApply";
-            this.chartApply.Size = new System.Drawing.Size(246, 37);
+            this.chartApply.Size = new System.Drawing.Size(246, 22);
             this.chartApply.TabIndex = 4;
             this.chartApply.Text = "Chart";
             this.chartApply.UseVisualStyleBackColor = true;
@@ -593,7 +594,7 @@
             this.chartClassBox.Controls.Add(this.checkBox8);
             this.chartClassBox.Location = new System.Drawing.Point(77, 19);
             this.chartClassBox.Name = "chartClassBox";
-            this.chartClassBox.Size = new System.Drawing.Size(176, 191);
+            this.chartClassBox.Size = new System.Drawing.Size(176, 206);
             this.chartClassBox.TabIndex = 3;
             this.chartClassBox.TabStop = false;
             this.chartClassBox.Text = "Classes";
@@ -601,7 +602,7 @@
             // checkBox19
             // 
             this.checkBox19.AutoSize = true;
-            this.checkBox19.Location = new System.Drawing.Point(104, 146);
+            this.checkBox19.Location = new System.Drawing.Point(105, 160);
             this.checkBox19.Name = "checkBox19";
             this.checkBox19.Size = new System.Drawing.Size(68, 17);
             this.checkBox19.TabIndex = 11;
@@ -611,7 +612,7 @@
             // checkBox18
             // 
             this.checkBox18.AutoSize = true;
-            this.checkBox18.Location = new System.Drawing.Point(104, 122);
+            this.checkBox18.Location = new System.Drawing.Point(105, 136);
             this.checkBox18.Name = "checkBox18";
             this.checkBox18.Size = new System.Drawing.Size(63, 17);
             this.checkBox18.TabIndex = 10;
@@ -621,7 +622,7 @@
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(104, 98);
+            this.checkBox17.Location = new System.Drawing.Point(105, 112);
             this.checkBox17.Name = "checkBox17";
             this.checkBox17.Size = new System.Drawing.Size(58, 17);
             this.checkBox17.TabIndex = 9;
@@ -631,7 +632,7 @@
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(104, 74);
+            this.checkBox16.Location = new System.Drawing.Point(105, 88);
             this.checkBox16.Name = "checkBox16";
             this.checkBox16.Size = new System.Drawing.Size(60, 17);
             this.checkBox16.TabIndex = 8;
@@ -641,7 +642,7 @@
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(104, 50);
+            this.checkBox15.Location = new System.Drawing.Point(105, 64);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.Size = new System.Drawing.Size(63, 17);
             this.checkBox15.TabIndex = 7;
@@ -651,7 +652,7 @@
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(104, 28);
+            this.checkBox14.Location = new System.Drawing.Point(105, 42);
             this.checkBox14.Name = "checkBox14";
             this.checkBox14.Size = new System.Drawing.Size(59, 17);
             this.checkBox14.TabIndex = 6;
@@ -661,7 +662,7 @@
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(6, 146);
+            this.checkBox13.Location = new System.Drawing.Point(7, 160);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(53, 17);
             this.checkBox13.TabIndex = 5;
@@ -671,7 +672,7 @@
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(6, 122);
+            this.checkBox12.Location = new System.Drawing.Point(7, 136);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.Size = new System.Drawing.Size(50, 17);
             this.checkBox12.TabIndex = 4;
@@ -681,7 +682,7 @@
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(6, 99);
+            this.checkBox11.Location = new System.Drawing.Point(7, 113);
             this.checkBox11.Name = "checkBox11";
             this.checkBox11.Size = new System.Drawing.Size(78, 17);
             this.checkBox11.TabIndex = 3;
@@ -691,7 +692,7 @@
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(6, 75);
+            this.checkBox10.Location = new System.Drawing.Point(7, 89);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(59, 17);
             this.checkBox10.TabIndex = 2;
@@ -701,7 +702,7 @@
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(6, 52);
+            this.checkBox9.Location = new System.Drawing.Point(7, 66);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(68, 17);
             this.checkBox9.TabIndex = 1;
@@ -711,7 +712,7 @@
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(6, 28);
+            this.checkBox8.Location = new System.Drawing.Point(7, 42);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(66, 17);
             this.checkBox8.TabIndex = 0;
@@ -721,6 +722,7 @@
             // chartStatBox
             // 
             this.chartStatBox.Controls.Add(this.hpGraphSelect);
+            this.chartStatBox.Controls.Add(this.avgGraphSelect);
             this.chartStatBox.Controls.Add(this.lucGraphSelect);
             this.chartStatBox.Controls.Add(this.tpGraphSelect);
             this.chartStatBox.Controls.Add(this.agiGraphSelect);
@@ -729,7 +731,7 @@
             this.chartStatBox.Controls.Add(this.tecGraphSelect);
             this.chartStatBox.Location = new System.Drawing.Point(9, 19);
             this.chartStatBox.Name = "chartStatBox";
-            this.chartStatBox.Size = new System.Drawing.Size(62, 191);
+            this.chartStatBox.Size = new System.Drawing.Size(62, 206);
             this.chartStatBox.TabIndex = 2;
             this.chartStatBox.TabStop = false;
             this.chartStatBox.Text = "Stats";
@@ -812,6 +814,17 @@
             this.tecGraphSelect.Tag = "3";
             this.tecGraphSelect.Text = "TEC";
             this.tecGraphSelect.UseVisualStyleBackColor = true;
+            // 
+            // avgGraphSelect
+            // 
+            this.avgGraphSelect.AutoSize = true;
+            this.avgGraphSelect.Location = new System.Drawing.Point(6, 180);
+            this.avgGraphSelect.Name = "avgGraphSelect";
+            this.avgGraphSelect.Size = new System.Drawing.Size(54, 17);
+            this.avgGraphSelect.TabIndex = 1;
+            this.avgGraphSelect.Tag = "7";
+            this.avgGraphSelect.Text = "StAvg";
+            this.avgGraphSelect.UseVisualStyleBackColor = true;
             // 
             // StatEditForm
             // 
@@ -916,6 +929,7 @@
         private System.Windows.Forms.RadioButton tecGraphSelect;
         private System.Windows.Forms.Button chartApply;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton avgGraphSelect;
     }
 }
 
